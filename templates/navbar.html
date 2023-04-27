@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <div class="container" >
+        <a class="navbar-brand" href="{% url 'app_shop:home' %}">Django Ecommerce Project</a>
+
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
+        <span class="navbar-toggler-icon" ></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto" >
+                {% if request.user.is_authenticated %}
+                <li class="nav-item" >
+                    <a class="nav-link" href="{% url 'app_order:cart' %}"><i class="fa fa-shopping-cart" aria-hidden="true" style="position: absolute; right: 40px;">Cart</i></a>
+                    
+                </li>
+
+                <li class="nav-item dropdown" >
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user-circle-o" aria-hidden="true" style="margin-left: 20px;"></i>
+                        {{ request.user.profile.username }}
+                        </a>
+                        
+                
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                        <a href="{% url 'App_Login:profile' %}" class="dropdown-item">Profile</a>
+                        <a href="#" class="dropdown-item">Orders</a>
+                        <div class="dropdown-divider" > </div>
+                        <a href="{% url 'App_Login:logout' %}" class="dropdown-item">Logout</a>
+
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item" style="position: absolute; right: 40px; bottom: 10px;" >
+                    <a href="{% url 'App_Login:login' %}" class="btn btn-info btn-sm" >Login</a>
+                    <a href="{% url 'App_Login:signup' %}" class="btn btn-info btn-sm">Signup</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

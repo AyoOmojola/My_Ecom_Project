@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body_block %}
+
+<div class="container my-5" >
+    <div class="card" >
+        <div class="row" >
+            <aside class="col-sm-5 border-right" >
+                <article class="gallery-wrap" >
+                    <div class="img-big-wrap" >
+                        <a href="#"><img src="/media/{{ object.miniimage }}" style="width: 450px;" alt=""></a>
+                    </div>
+                </article>
+            </aside>
+            <aside class="col-sm-7" >
+                <article class="cart-body p-5" >
+                    <h3 class="title mp-3"> {{ object.name }} </h3>
+                    <p class="price-detail-wrap" >
+                        <span class="price h3 text-warning" >
+                            <span class="currency" >USD $</span>
+                            <span class="num" > {{ object.price }} </span>
+                        </span>
+                    </p>
+                    <dl class="item-property" >  
+                        <dt>Category Name</dt>
+                        <b style="color: red;" >{{ object.category }}</b> 
+                        <br>
+                        <dt>Description</dt>
+                        <dd>
+                            <p> {{ object.preview_text|linebreaks }} </p>
+                        </dd>
+                    </dl>
+                    <a href=" {% url 'app_order:add' pk=object.pk %} " class="btn btn-lg btn-outline-primary text-uppercase" >
+                        <i class="fa fa-shopping-cart"></i>Add To Cart
+                    </a>
+
+                </article>
+            </aside>
+            <h3>Description</h3>
+            <p>{{ object.details_text|linebreaks }}</p><br><br><br><br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
